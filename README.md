@@ -1,5 +1,5 @@
 # Projekt
-Projekt munka 10.C Bartha Bende, Élő Zalán, Süke Benedek
+#Projekt munka 10.C Bartha Bende, Élő Zalán, Süke Benedek#
 1.Nevek;Értékpapírok;Ára
 2.Sajátod;pénzed
 3.Szorzók
