@@ -7,15 +7,17 @@
 </ul>
 
 
+### Menüpontok:
+<ul>
+	<li>1	  Árak változás(1 nap v 1 hónap)</li>
+	<li>2	  Vásárlás/Eladás</li>
+	<li>3	  Növekvő sorrend</li>
+	<li>4	  Saját részvények megnézése</li>
+	<li>5	  Dátum</li>
+	<li>6 	  Árváltozás utáni összegzés</li>
+</ul>
 
-
-### 1	  Árak változás(1 nap v 1 hónap)
-### 2	  Vásárlás/Eladás
-### 3	  Növekvő sorrend
-### 4	  Saját részvények megnézése
-### 5	  Dátum
-### 6 	  Árváltozás utáni összegzés
-
+### Mit tudnak:
 <ul>
 		<li>1. Árak változása:	Ez a menüpont ki fogja listázni a 		vállalatok részvényeinek változását</li>
 		<li>2. Vásárlás/Eladás: Itt tudsz venni részvényeket és eladni 		egyaránt.</li>
