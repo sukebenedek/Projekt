@@ -1,12 +1,7 @@
-# Projekt
-# Projekt munka 10.C Bartha Bende, Élő Zalán, Süke Benedek
-<ul>
-	1	Nevek;Értékpapírok;Ára
-	2	Sajátod;pénzed
-	3	Szorzók
-</ul>
-
-
+# Projekt munka 10.C 
+# Bartha Bende, Élő Zalán, Süke Benedek
+## Tözsde szimuláció
+### Egy 30 cégből álló mini tőzsde amiben kereskedhetsz a részvényeikkel és szimulálja napról-napre vagy hónapról-hónapra a cégek részvényeinek árát.
 ### Menüpontok:
 <ul>
 	<li>1	  Árak változás(1 nap v 1 hónap)</li>
