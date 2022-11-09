@@ -6,13 +6,18 @@
 	3	Szorzók
 </ul>
 
+
 <ul>
 
-	1	  rak változás(1 nap v 1 hónap)
+	1	  Árak változás(1 nap v 1 hónap)
 	2	  Vásárlás/Eladás
 	3	  Növekvő sorrend
 	4	  Saját részvények megnézése
 	5	  Dátum
 	6 	  Árváltozás utáni összegzés
 </ul>
+
+### 1 Árak változása:	Ez a menüpont ki fogja listázni a vállalatok részvényeinek változását 
+### 2
+
 	
