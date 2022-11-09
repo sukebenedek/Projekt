@@ -1,6 +1,7 @@
 from classs import Result
 
 results = []
+
 def readCompanies():
     f = open('companies.csv', 'r', encoding='UTF=8')
     # f.readline()
@@ -24,12 +25,22 @@ def oneStockPriceCalculator():
     for r in results:
         r.oneStockPrice = r.allPrices / 1000000000
     writeFile()
+    
 oneStockPriceCalculator()
 
 readCompanies()
 
 # for i in results:
 #     print(i.name, i.percent)7
+
+
+
+
+
 for i in range(len(results)):
     print(results[i].oneStockPrice)
+
+
+
+    
 print()
