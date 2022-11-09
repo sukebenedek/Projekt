@@ -10,7 +10,7 @@ def readCompanies():
         results.append(r)
     f.close()
 
-
+readCompanies()
 
 def writeFile():
     f = open("companies.csv", "w", encoding="UTF-8")
@@ -26,7 +26,8 @@ def oneStockPriceCalculator():
         r.oneStockPrice = r.allPrices / 1000000000
     writeFile()
     return
-    
+oneStockPriceCalculator()
+readCompanies()    
 
 
 # for i in results:
@@ -39,6 +40,15 @@ def oneStockPriceCalculator():
 # for i in range(len(results)):
 #     print(results[i].oneStockPrice)
 
+def toDollar(num):
+    if num > 100000000000:
+        return f"${num / 100000000000} T"
+    elif num > 100000000:
+        return f"${num / 100000000} B"
+    elif num > 100000:
+        return f"${num / 100000} M"
+    else:
+        return f"${num}"
 
 
 

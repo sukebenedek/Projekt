@@ -1,5 +1,11 @@
 from classs import *
 from functions import *
 
-# for row in results:
-#     print(f"{r.name}")
+sorszam = 1
+for row in results:
+    
+    print(f"{sorszam}. {row.name} \nÖsszérték {toDollar(row.allPrices)}\tEgy részvény ára: {toDollar(row.oneStockPrice)}\n-------------------------------------------------")
+
+
+    sorszam += 1
+    

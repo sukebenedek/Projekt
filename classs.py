@@ -3,4 +3,4 @@ class Result:
         data = row.split(';')
         self.name = data[0]
         self.allPrices = int(data[1])
-        self.oneStockPrice = data[2]
+        self.oneStockPrice = float(data[2])
