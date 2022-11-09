@@ -9,12 +9,12 @@
 
 
 
-	1	  Árak változás(1 nap v 1 hónap)
-	2	  Vásárlás/Eladás
-	3	  Növekvő sorrend
-	4	  Saját részvények megnézése
-	5	  Dátum
-	6 	  Árváltozás utáni összegzés
+### 1	  Árak változás(1 nap v 1 hónap)
+### 2	  Vásárlás/Eladás
+### 3	  Növekvő sorrend
+### 4	  Saját részvények megnézése
+### 5	  Dátum
+### 6 	  Árváltozás utáni összegzés
 
 <ul>
 		<li>1. Árak változása:	Ez a menüpont ki fogja listázni a 		vállalatok részvényeinek változását</li>
