@@ -10,7 +10,7 @@ def readCompanies():
         results.append(r)
     f.close()
 
-readCompanies()
+
 
 def writeFile():
     f = open("companies.csv", "w", encoding="UTF-8")
@@ -25,10 +25,9 @@ def oneStockPriceCalculator():
     for r in results:
         r.oneStockPrice = r.allPrices / 1000000000
     writeFile()
+    return
     
-oneStockPriceCalculator()
 
-readCompanies()
 
 # for i in results:
 #     print(i.name, i.percent)7
@@ -37,10 +36,9 @@ readCompanies()
 
 
 
-for i in range(len(results)):
-    print(results[i].oneStockPrice)
+# for i in range(len(results)):
+#     print(results[i].oneStockPrice)
 
 
 
-    
-print()
+
