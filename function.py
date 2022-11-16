@@ -98,10 +98,9 @@ def searchByName2():
 def newResults2():
     name = input('Név(Részlet): ')
     allPrice = input('Modul: ')
-    time = input('Idő (óó:pp): ')
     partPrice = int(input('Százalék: '))
 
-    row = f'{name2};{allPrice2};{partPrice2}\n'
+    row = f'{name};{allPrice};{partPrice}\n'
     f = open('ecdl2.csv', 'a', encoding='UTF=8')
     f.write(row)
     f.close()
@@ -159,11 +158,31 @@ def buy():
             print(f'{num}.{i.name}:\t {i.allPrice} {i.partPrice}/db')
         elif name.lower() == i.name.lower():
             count = input('Mennyit szeretne venni belőle?: ')
-            for i in result2:
+            for i in results2:
                 if name.lower() == i.name2.lower():
                     i.allPrice2 += int(count)
+                    writeFile2()
                     for i in results:
-                        i.allPrice -= int(count)
+                        if name.lower() == i.name.lower():
+                            i.allPrice -= int(count)
+                            writeFile()
+                elif name.lower() != i.name2.lower():
+                    for i in results:
+                        if name.lower() == i.name.lower():
+                            name = i.name
+                            allPrice = int(count)
+                        
+
+                        row = f'{name};{allPrice}\n'
+                        f = open('ecdl2.csv', 'a', encoding='UTF=8')
+                        f.write(row)
+                        f.close()
+                        
+                         
+
+                    
+                    
+                
 
             
     
