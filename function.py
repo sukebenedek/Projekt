@@ -91,6 +91,7 @@ def writeFile2():
 
 
 def ownList():
+    readFile2()
     for i in results2:
         print(f'{i.name2}:\t {i.allPrice2} {i.partPrice2}$/db\n')
     input('')
@@ -187,9 +188,9 @@ def buySell():
     choice = input('Válaszd ki melyiket szeretnéd: ')
     while len(choice) != 1 or choice < '1' or choice > '2':
         choice = input('Válaszd ki melyiket szeretnéd: ')
-    if choice == 1:
+    if choice == '1':
         sell()
-    else: 
+    elif choice == '2':
         buy()
         
         
@@ -199,26 +200,26 @@ def buy():
     num = 1
     name = input('Név: ')
     for i in results:
-        if name.lower() == i.name.lower():
-            chname = i.name
+        if name.lower().strip() == i.name.lower().strip():
+            chname = i.name.strip()
             print(f'Maximum {i.allPrice} dollárnyi részesedést vehetsz')
-            count = input('Mennyit szeretne venni belőle?: ')
+            count = input('Mennyit szeretne venni belőle?(dollár): ')
             while int(count) > i.allPrice:
                 print('Ha nem akarsz mégse venni(0)')
                 count = input('Ennyi részesedés nem áll rendelkezésre adj meg kevesebb értéket: ')
                 if count == 0:
                     return
             for i in results2:
-                if name.lower() == i.name2.lower():
+                if name.lower() == i.name2.lower().strip():
                     i.allPrice2 += int(count)
                     i.partPrice2 = 0
                     writeFile2()
                     for i in results:
-                        if name.lower() == i.name.lower():
+                        if name.lower() == i.name.lower().strip():
                             i.allPrice -= int(count)
                             writeFile()
                             return
-                elif name.lower() != i.name2.lower():
+                elif name.lower() != i.name2.lower().strip():
                     name = chname
                     allPrice = int(count)
                     partPrice = 0
@@ -227,11 +228,11 @@ def buy():
                     f.write(row)
                     f.close()
                     for i in results:
-                        if name.lower() == i.name.lower():
+                        if name.lower().strip() == i.name.lower().strip():
                             i.allPrice -= int(count)
                             writeFile()
                             return
-        elif name.lower() in i.name.lower():
+        elif name.lower().strip() in i.name.lower().strip():
             print('Ilyen nincs de lehet ezekre gondoltál')
             print(f'{num}.{i.name}:\t {i.allPrice} {i.partPrice}/db')
             input('')
@@ -242,23 +243,23 @@ def sell():
     num = 1
     name = input('Név: ')
     for i in results2:
-        if name.lower() == i.name2.lower():
-            count = input('Mennyit szeretne eladni belőle?: ')
+        if name.lower().strip() == i.name2.lower().strip():
+            count = input('Mennyit szeretne eladni belőle?(dollár): ')
             while int(count) > i.allPrice:
                 count = input('Ennyi részesedés nincs nálad adj meg kevesebb értéket: ')
             for i in results:
-                if name.lower() == i.name.lower():
+                if name.lower().strip() == i.name.lower().strip():
                     i.allPrice += int(count)
                     i.partPrice = 0
                     writeFile()
                     for i in results2:
-                        if name.lower() == i.name2.lower():
+                        if name.lower().strip() == i.name2.lower().strip():
                             i.allPrice2 -= int(count)
                             writeFile2()
                             return
                 else:
                     print('Ilyen nevű cégtől nincs részvényed')
-        elif name.lower() in i.name2.lower():
+        elif name.lower().strip() in i.name2.lower().strip():
             print('Ilyen nincs de lehet ezekre gondoltál')
             print(f'{num}.{i.name2}:\t {i.allPrice2} {i.partPrice2}/db')
             input('')

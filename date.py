@@ -90,7 +90,7 @@ def timeJumping():
 
 
 
-    beszorzas()
+    # beszorzas()
     os.system("cls")
     print(f"Jelenlegi dátum: {date}\n")
     input("Ok")
