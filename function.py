@@ -1,4 +1,4 @@
-from results import Result1, Result2, Result3
+from results import Result1, Result2, Result3, szorzo
 
 
 
@@ -6,14 +6,14 @@ results = []
 
 def readFile():
     results.clear()
-    f = open('ecdl.csv', 'r', encoding='UTF=8')
+    f = open('companies.csv', 'r', encoding='UTF=8')
     for row in f:
         r = Result1(row.strip())
         results.append(r)
     f.close()
 
 def writeFile():
-    f = open('ecdl.csv', 'w', encoding='UTF=8')
+    f = open('companies.csv', 'w', encoding='UTF=8')
     for r in results:
         row = f'{r.name};{r.allPrice};{r.partPrice}\n' 
         f.write(row)
@@ -37,7 +37,7 @@ def newResults():
     partPrice = int(input('Százalék: '))
 
     row = f'{name};{allPrice};{time};{partPrice}\n'
-    f = open('ecdl.csv', 'a', encoding='UTF=8')
+    f = open('companies.csv', 'a', encoding='UTF=8')
     f.write(row)
     f.close()
 
@@ -75,7 +75,7 @@ results2 = []
 
 def readFile2():
     results2.clear()
-    f = open('ecdl2.csv', 'r', encoding='UTF=8')
+    f = open('companies2.csv', 'r', encoding='UTF=8')
     for row in f:
         r = Result2(row.strip())
         results2.append(r)
@@ -83,7 +83,7 @@ def readFile2():
 
 
 def writeFile2():
-    f = open('ecdl2.csv', 'w', encoding='UTF=8')
+    f = open('companies2.csv', 'w', encoding='UTF=8')
     for r in results2:
         row = f'{r.name2};{r.allPrice2};{r.partPrice2}\n' 
         f.write(row)
@@ -98,17 +98,17 @@ def ownList():
 
 results3 = []
 
-def readFile3():
-    results3.clear()
-    f = open('ecdl3.csv', 'r', encoding='UTF=8')
+def readFile2():
+    results2.clear()
+    f = open('companies3.csv', 'r', encoding='UTF=8')
     for row in f:
-        r = Result3(row.strip())
+        r = Result2(row.strip())
         results3.append(r)
     f.close()
     
 
 def writeFile3():
-    f = open('ecdl3.csv', 'w', encoding='UTF=8')
+    f = open('companies3.csv', 'w', encoding='UTF=8')
     for r in results3:
         row = f'{r.name3};{r.allPrice3};{r.partPrice3}\n' 
         f.write(row)
@@ -119,6 +119,36 @@ def lists():
     for i in results3:
         print(f'{i.name3}:\t {i.allPrice3} {i.partPrice3}/db\n')
     input('')
+
+
+# szorzok ---------------------------------------------------------------------------------------------------------------
+
+szorzook = []
+
+def readFile3():
+    results3.clear()
+    f = open('szorzok.csv', 'r', encoding='UTF=8')
+    for row in f:
+        r = szorzo(row.strip())
+        szorzook.append(r)
+    f.close()
+
+def writeFileSZ():
+    f = open('szorzok.csv', 'w', encoding='UTF=8')
+    for r in szorzook:
+        row = f'{r.data}\n' 
+        f.write(row)
+    f.close()
+
+
+def numberGeneration():
+    ListLen = 0 
+    print(results3)
+    for i in range( len(results3)):
+        ListLen +=1
+    print(ListLen)
+    input('')
+    
 
 # 1,2 -------------------------------------------------------------------------------------------------------------------
 
@@ -164,7 +194,7 @@ def buy():
                     allPrice = int(count)
                     partPrice = 0
                     row = f'{name};{allPrice};{partPrice}\n'
-                    f = open('ecdl2.csv', 'a', encoding='UTF=8')
+                    f = open('companies2.csv', 'a', encoding='UTF=8')
                     f.write(row)
                     f.close()
                     for i in results:
@@ -211,6 +241,8 @@ def oneCal():
         i.partPrice3 = i.allPrice3 / 1000000000
         writeFile3()
             
+
+
         
                         
     

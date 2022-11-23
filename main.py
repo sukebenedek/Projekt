@@ -1,4 +1,4 @@
-from function import ownList, lists, deleteResults, modifyResults, newResults, readFile, readFile2, readFile3, searchByName, buySell, oneCal
+from function import ownList, lists, deleteResults, modifyResults, newResults, readFile, readFile2, readFile3, searchByName, buySell, oneCal, numberGeneration
 from menu import menu
 
 
@@ -14,5 +14,5 @@ while choice != 0:
     if choice == 3:
         buySell()
     if choice == 4:
-        oneCal()
+        numberGeneration()
     choice = menu()

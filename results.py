@@ -26,4 +26,11 @@ class Result3:
         data = row.split(';')
         self.name3 = data[0]
         self.allPrice3 = int(data[1])
-        self.partPrice3 = data[2]  
+        self.partPrice3 = data[2]
+
+class szorzo:
+
+
+    def __init__(self, row: str):
+        data = row.split(';')
+        self.data = data[0]  
