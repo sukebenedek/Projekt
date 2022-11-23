@@ -1,4 +1,4 @@
-from function import ownList, lists, deleteResults, modifyResults, newResults, readFile, readFile2, readFile3, searchByName, buySell, oneCal, numberGeneration
+from function import ownList, lists, deleteResults, modifyResults, newResults, readFile, readFile2, readFile3, searchByName, buySell, oneCal, beszorzas
 from menu import menu
 from date import *
 
