@@ -92,7 +92,7 @@ def writeFile2():
 
 def ownList():
     for i in results2:
-        print(f'{i.name2}:\t {i.allPrice2} {i.partPrice2}/db\n')
+        print(f'{i.name2}:\t {i.allPrice2} {i.partPrice2}$/db\n')
     input('')
 #3 ----------------------------------------------------------------------------------------------------------------------
 
@@ -118,7 +118,7 @@ def writeFile3():
 
 def lists():
     for i in results3:
-        print(f'{i.name3}:\t {i.allPrice3} {i.partPrice3}/db\n')
+        print(f'{i.name3}:\t {toDollar(i.allPrice3)} | {i.partPrice3}$/db\n')
     input('')
 
 
@@ -146,8 +146,7 @@ def numberGeneration():
     ListLen = 0 
     for i in range( len(results3)):
         ListLen +=1
-    print(ListLen)
-    input('')
+    
     
 
 # 1,2 -------------------------------------------------------------------------------------------------------------------
