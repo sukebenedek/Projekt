@@ -241,7 +241,15 @@ def oneCal():
         i.partPrice3 = i.allPrice3 / 1000000000
         writeFile3()
             
-
+def toDollar(num):
+    if num > 100000000000:
+        return f"${num / 100000000000} T"
+    elif num > 100000000:
+        return f"${num / 100000000} B"
+    elif num > 100000:
+        return f"${num / 100000} M"
+    else:
+        return f"${num}"
 
         
                         
