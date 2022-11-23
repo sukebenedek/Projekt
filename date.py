@@ -1,6 +1,7 @@
 import os
+from function import *
 
-today = "2022-10-23"
+today = "2022-11-23"
 today = today.split("-")
 day = int(today[2])
 month = int(today[1])
@@ -29,10 +30,13 @@ def jumpDate(howMuch):
         else:
             month += 1
 
+    
+
     # if howMuch == "":
     #     date = f"{year}-{month}-{day}"
     # date = f"{year}-{month}-{day}"
     return(f"{year}-{month}-{day}")
+
 
 def timeJumping():
     
@@ -51,6 +55,42 @@ def timeJumping():
     else:
         print("Ilyen választás nem létezik.\n")
 
+    writeFileSZDelet()
+    for i in results3:
+        name = i.name3
+        if jumpType == '1':
+            alleprice3 = i.allPrice3
+            data = random.randint(95, 105)
+        elif jumpType == '2':
+            alleprice3 = i.allPrice3
+            data = random.randint(80, 120)
+        a = data
+        data2 = int(data) / 100
+        row = f'{data2}\n'
+        f = open('szorzok.csv', 'a', encoding='UTF=8')
+        f.write(row)
+        f.close()
+        print(i.allPrice3)
+        print(alleprice3)
+        print(data)     
+        i.allPrice3 = int(alleprice3 * a / 100)
+        writeFile3()
+        for i in results:
+            if name.lower() == i.name.lower():
+                alleprice = i.allPrice
+                i.allPrice = int(alleprice * a / 100)  
+                writeFile()
+                for i in results2:
+                    if name.lower() == i.name2.lower():
+                        alleprice2 = i.allPrice2
+                        i. allPrice2 = alleprice2 * a / 100
+                        writeFile2()
+
+
+
+
+
+    beszorzas()
     os.system("cls")
     print(f"Jelenlegi dátum: {date}\n")
     input("Ok")
