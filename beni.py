@@ -1,5 +1,7 @@
 from classs import *
+from function import *
 from functions import *
+
 
 sorszam = 1
 for row in results:
@@ -8,4 +10,6 @@ for row in results:
 
 
     sorszam += 1
-    
+
+def priceChangeSummary():
+    for i in range()
