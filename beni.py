@@ -11,5 +11,5 @@ for row in results:
 
     sorszam += 1
 
-def priceChangeSummary():
-    for i in range()
+# def priceChangeSummary():
+#     for i in range()
