@@ -1,7 +1,10 @@
 import os
+from date import *
 
 def menu():
     os.system('cls')
+    
+    print(f"Dátum: {jumpDate(str())}\n")
     print('1..Saját részvények megnézése')
     print('2..Részvények')
     print('3..Vásárlás vagy eladás')
