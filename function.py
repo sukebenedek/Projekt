@@ -93,7 +93,7 @@ def writeFile2():
 def ownList():
     readFile2()
     for i in results2:
-        print(f'{i.name2}:\t {i.allPrice2} {i.partPrice2}$/db\n')
+        print(f'{i.name2}:\t {i.allPrice2}   {i.partPrice2}$/db\n')
     input('')
 #3 ----------------------------------------------------------------------------------------------------------------------
 
@@ -197,11 +197,14 @@ def buySell():
 
 
 def buy():
+    readFile()
+    readFile2()
+    readFile3()
     num = 1
     name = input('Név: ')
     for i in results:
-        if name.lower().strip() == i.name.lower().strip():
-            chname = i.name.strip()
+        if name.lower() == i.name.lower():
+            chname = i.name
             print(f'Maximum {i.allPrice} dollárnyi részesedést vehetsz')
             count = input('Mennyit szeretne venni belőle?(dollár): ')
             while int(count) > i.allPrice:
@@ -210,16 +213,17 @@ def buy():
                 if count == 0:
                     return
             for i in results2:
-                if name.lower() == i.name2.lower().strip():
+                if name.lower() == i.name2.lower():
                     i.allPrice2 += int(count)
                     i.partPrice2 = 0
                     writeFile2()
                     for i in results:
-                        if name.lower() == i.name.lower().strip():
+                        if name.lower() == i.name.lower():
                             i.allPrice -= int(count)
                             writeFile()
                             return
-                elif name.lower() != i.name2.lower().strip():
+            for i in results2:
+                if name.lower() != i.name2.lower():
                     name = chname
                     allPrice = int(count)
                     partPrice = 0
@@ -228,42 +232,42 @@ def buy():
                     f.write(row)
                     f.close()
                     for i in results:
-                        if name.lower().strip() == i.name.lower().strip():
+                        if name.lower() == i.name.lower():
                             i.allPrice -= int(count)
                             writeFile()
                             return
-        elif name.lower().strip() in i.name.lower().strip():
-            print('Ilyen nincs de lehet ezekre gondoltál')
-            print(f'{num}.{i.name}:\t {i.allPrice} {i.partPrice}/db')
-            input('')
-            num += 1
+    if name.lower() in i.name.lower():
+        print('Ilyen nincs de lehet ezekre gondoltál')
+        print(f'{num}.{i.name}:\t {i.allPrice} {i.partPrice}/db')
+        input('')
+        num += 1
 
 
 def sell():
     num = 1
     name = input('Név: ')
     for i in results2:
-        if name.lower().strip() == i.name2.lower().strip():
+        if name.lower() == i.name2.lower():
             count = input('Mennyit szeretne eladni belőle?(dollár): ')
-            while int(count) > i.allPrice:
+            while int(count) > i.allPrice2:
                 count = input('Ennyi részesedés nincs nálad adj meg kevesebb értéket: ')
             for i in results:
-                if name.lower().strip() == i.name.lower().strip():
+                if name.lower() == i.name.lower():
                     i.allPrice += int(count)
                     i.partPrice = 0
                     writeFile()
                     for i in results2:
-                        if name.lower().strip() == i.name2.lower().strip():
+                        if name.lower() == i.name2.lower():
                             i.allPrice2 -= int(count)
                             writeFile2()
                             return
                 else:
                     print('Ilyen nevű cégtől nincs részvényed')
-        elif name.lower().strip() in i.name2.lower().strip():
-            print('Ilyen nincs de lehet ezekre gondoltál')
-            print(f'{num}.{i.name2}:\t {i.allPrice2} {i.partPrice2}/db')
-            input('')
-            num += 1
+    if name.lower() in i.name2.lower():
+        print('Ilyen nincs de lehet ezekre gondoltál')
+        print(f'{num}.{i.name2}:\t {i.allPrice2} {i.partPrice2}/db')
+        input('')
+        num += 1
 
 
 def oneCal():

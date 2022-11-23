@@ -60,7 +60,7 @@ def timeJumping():
         name = i.name3
         if jumpType == '1':
             alleprice3 = i.allPrice3
-            data = random.randint(95, 105)
+            data = random.randint(97, 103)
         elif jumpType == '2':
             alleprice3 = i.allPrice3
             data = random.randint(80, 120)
@@ -85,6 +85,7 @@ def timeJumping():
                         alleprice2 = i.allPrice2
                         i. allPrice2 = alleprice2 * a / 100
                         writeFile2()
+        oneCal()
 
 
 
