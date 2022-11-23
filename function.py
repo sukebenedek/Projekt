@@ -1,4 +1,6 @@
-from results import Result1, Result2
+from results import Result1, Result2, Result3
+
+
 
 results = []
 
@@ -8,6 +10,13 @@ def readFile():
     for row in f:
         r = Result1(row.strip())
         results.append(r)
+    f.close()
+
+def writeFile():
+    f = open('ecdl.csv', 'w', encoding='UTF=8')
+    for r in results:
+        row = f'{r.name};{r.allPrice};{r.partPrice}\n' 
+        f.write(row)
     f.close()
 
 
@@ -36,14 +45,6 @@ def newResults():
     results.append(r)
 
 
-def writeFile():
-    results.clear()
-    f = open('ecdl.csv', 'w', encoding='UTF=8')
-    for r in results:
-        row = f'{r.name};{r.allPrice};{r.partPrice}\n' 
-        f.write(row)
-    f.close()
-
 def deleteResults():
     name = input('Név: ')
     for r in results:
@@ -67,10 +68,6 @@ def modifyResults():
     input('Ilyen nevű vizsgázó nem volt')
 
 
-def lists():
-    for i in results:
-        print(f'{i.name}:\t {i.allPrice} {i.partPrice}/db\n')
-    input('')
 
 # 2 -----------------------------------------------------------------------------------------------------------------------
 
@@ -85,98 +82,138 @@ def readFile2():
     f.close()
 
 
-
-def searchByName2():
-    name = input('Név(Részlet): ')
-    for r in results2:
-        if name.lower() in r.name2.lower():
-            print(f'{r.name2} {r.allPrice2}: {r.partPrice2} db')
-        
-    input('\n')
-
-
-def newResults2():
-    name = input('Név(Részlet): ')
-    allPrice = input('Modul: ')
-    partPrice = int(input('Százalék: '))
-
-    row = f'{name};{allPrice};{partPrice}\n'
-    f = open('ecdl2.csv', 'a', encoding='UTF=8')
-    f.write(row)
-    f.close()
-
-    r = Result2(row)
-    results2.append(r)
-
-
 def writeFile2():
-    results2.clear()
     f = open('ecdl2.csv', 'w', encoding='UTF=8')
     for r in results2:
         row = f'{r.name2};{r.allPrice2};{r.partPrice2}\n' 
         f.write(row)
     f.close()
 
-def deleteResults2():
-    name = input('Név: ')
-    for r in results2:
-        if r.name2.lower() == name.lower():
-            results2.remove(r)
-            writeFile2()
-            return
-    input('Ilyen nevű vizsgázó nem volt')
-
-
-def modifyResults2():
-    name = input('Név: ')
-    for r in results2:
-        if r.name2.lower() == name.lower():
-            # index = results2.index(r)    # r elem indexe a results2 listában
-            r.time = input('Idő (óó:pp): ')
-            r.partPrice = int(input('Százalék: '))
-            writeFile()
-            return
-
-    input('Ilyen nevű vizsgázó nem volt')
-
 
 def ownList():
     for i in results2:
         print(f'{i.name2}:\t {i.allPrice2} {i.partPrice2}/db\n')
     input('')
+#3 ----------------------------------------------------------------------------------------------------------------------
 
+results3 = []
+
+def readFile3():
+    results3.clear()
+    f = open('ecdl3.csv', 'r', encoding='UTF=8')
+    for row in f:
+        r = Result3(row.strip())
+        results3.append(r)
+    f.close()
     
+
+def writeFile3():
+    f = open('ecdl3.csv', 'w', encoding='UTF=8')
+    for r in results3:
+        row = f'{r.name3};{r.allPrice3};{r.partPrice3}\n' 
+        f.write(row)
+    f.close()
+
+
+def lists():
+    for i in results3:
+        print(f'{i.name3}:\t {i.allPrice3} {i.partPrice3}/db\n')
+    input('')
+
 # 1,2 -------------------------------------------------------------------------------------------------------------------
+
+def buySell():
+    print('1. Ha eladni szeretnél')
+    print('2. Ha vásárolni szeretnél')
+    choice = input('Válaszd ki melyiket szeretnéd: ')
+    while len(choice) != 1 or choice < '1' or choice > '2':
+        choice = input('Válaszd ki melyiket szeretnéd: ')
+    if choice == 1:
+        sell()
+    else: 
+        buy()
+        
+        
 
 
 def buy():
     num = 1
     name = input('Név: ')
     for i in results:
-        if name.lower() in i.name.lower():
-            print('Ilyen nincs de lehet ezekre gondoltál')
-            print(f'{num}.{i.name}:\t {i.allPrice} {i.partPrice}/db')
-        elif name.lower() == i.name.lower():
+        if name.lower() == i.name.lower():
+            chname = i.name
+            print(f'Maximum {i.allPrice} dollárnyi részesedést vehetsz')
             count = input('Mennyit szeretne venni belőle?: ')
+            while int(count) > i.allPrice:
+                print('Ha nem akarsz mégse venni(0)')
+                count = input('Ennyi részesedés nem áll rendelkezésre adj meg kevesebb értéket: ')
+                if count == 0:
+                    return
             for i in results2:
                 if name.lower() == i.name2.lower():
                     i.allPrice2 += int(count)
+                    i.partPrice2 = 0
                     writeFile2()
                     for i in results:
                         if name.lower() == i.name.lower():
                             i.allPrice -= int(count)
                             writeFile()
+                            return
                 elif name.lower() != i.name2.lower():
+                    name = chname
+                    allPrice = int(count)
+                    partPrice = 0
+                    row = f'{name};{allPrice};{partPrice}\n'
+                    f = open('ecdl2.csv', 'a', encoding='UTF=8')
+                    f.write(row)
+                    f.close()
                     for i in results:
                         if name.lower() == i.name.lower():
-                            name = i.name
-                            allPrice = int(count)
-                        
+                            i.allPrice -= int(count)
+                            writeFile()
+                            return
+        elif name.lower() in i.name.lower():
+            print('Ilyen nincs de lehet ezekre gondoltál')
+            print(f'{num}.{i.name}:\t {i.allPrice} {i.partPrice}/db')
+            input('')
+            num += 1
 
-                        row = f'{name};{allPrice}\n'
-                        f = open('ecdl2.csv', 'a', encoding='UTF=8')
-                        f.write(row)
-                        f.close()
+
+def sell():
+    num = 1
+    name = input('Név: ')
+    for i in results2:
+        if name.lower() == i.name2.lower():
+            count = input('Mennyit szeretne eladni belőle?: ')
+            while int(count) > i.allPrice:
+                count = input('Ennyi részesedés nincs nálad adj meg kevesebb értéket: ')
+            for i in results:
+                if name.lower() == i.name.lower():
+                    i.allPrice += int(count)
+                    i.partPrice = 0
+                    writeFile()
+                    for i in results2:
+                        if name.lower() == i.name2.lower():
+                            i.allPrice2 -= int(count)
+                            writeFile2()
+                            return
+                else:
+                    print('Ilyen nevű cégtől nincs részvényed')
+        elif name.lower() in i.name2.lower():
+            print('Ilyen nincs de lehet ezekre gondoltál')
+            print(f'{num}.{i.name2}:\t {i.allPrice2} {i.partPrice2}/db')
+            input('')
+            num += 1
+
+
+def oneCal():
+    for i in results3:
+        i.partPrice3 = i.allPrice3 / 1000000000
+        writeFile3()
+            
+        
+                        
+    
                         
                          
 
