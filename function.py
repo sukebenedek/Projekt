@@ -98,13 +98,14 @@ def ownList():
 
 results3 = []
 
-def readFile2():
-    results2.clear()
+def readFile3():
+    results3.clear()
     f = open('companies3.csv', 'r', encoding='UTF=8')
     for row in f:
-        r = Result2(row.strip())
+        r = Result3(row.strip())
         results3.append(r)
     f.close()
+
     
 
 def writeFile3():
@@ -125,8 +126,8 @@ def lists():
 
 szorzook = []
 
-def readFile3():
-    results3.clear()
+def readFileSZ():
+    szorzook.clear()
     f = open('szorzok.csv', 'r', encoding='UTF=8')
     for row in f:
         r = szorzo(row.strip())
@@ -143,7 +144,6 @@ def writeFileSZ():
 
 def numberGeneration():
     ListLen = 0 
-    print(results3)
     for i in range( len(results3)):
         ListLen +=1
     print(ListLen)
