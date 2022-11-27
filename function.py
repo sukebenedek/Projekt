@@ -189,7 +189,7 @@ def readFileC():
     f = open('cash.csv', 'r', encoding='UTF=8')
     for row in f:
         r = Cash(row.strip())
-        moeny.append(r)
+        money.append(r)
     f.close()
 
 
@@ -199,6 +199,10 @@ def writeFileC():
         row = f'{r.MyCash}\n' 
         f.write(row)
     f.close()
+
+def Mymoney():
+    for i in money:
+        return(i.MyCash)
 
 # 1,2 -------------------------------------------------------------------------------------------------------------------
 
@@ -316,16 +320,3 @@ def toDollar(num):
         return f"${num / 100000} M"
     else:
         return f"${num}"
-
-        
-                        
-    
-                        
-                         
-
-                    
-                    
-                
-
-            
-    

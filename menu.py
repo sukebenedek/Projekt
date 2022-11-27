@@ -1,10 +1,12 @@
 import os
 from date import *
+from function import Mymoney
 
 def menu():
     os.system('cls')
-    
-    print(f"Dátum: {jumpDate(str())}\n")
+    az = 0
+    print(f"Dátum: {jumpDate(str())}\n") 
+    print(f'You balance: {Mymoney()}$')
     print('1..Saját részvények megnézése')
     print('2..Részvények')
     print('3..Vásárlás vagy eladás')
