@@ -35,3 +35,10 @@ class szorzo:
     def __init__(self, row: str):
         data = row.split(';')
         self.MyData = data[0]
+
+class Cash:
+
+
+    def __init__(delf,row: str):
+        data = row.split(';')
+        self.MyCash = int(data[0])
