@@ -1,4 +1,4 @@
-from function import ownList, lists, deleteResults, modifyResults, newResults, readFile, readFile2, readFile3, searchByName, buySell, oneCal
+from function import ownList, lists, deleteResults, modifyResults, newResults, readFile, readFile2, readFile3,readFileC, searchByName, buySell, oneCal 
 from menu import menu
 from date import *
 
@@ -6,6 +6,7 @@ from date import *
 readFile()
 readFile2() 
 readFile3()
+readFileC()
 choice = menu()
 while choice != 0:
     if choice == 1:
