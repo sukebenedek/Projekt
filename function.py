@@ -118,8 +118,15 @@ def writeFile3():
 
 
 def lists():
+    hanyadik = 1
     for i in results3:
-        print(f'{i.name3}:\t {toDollar(i.allPrice3)} | {i.partPrice3}$/db\n')
+        # print(f'{i.name3}:\t {toDollar(i.allPrice3)} | {i.partPrice3}$/db\n')
+        print(f"{hanyadik}.\tNév: {i.name3}")
+        print(f"Összes piaci érték: {toDollar(i.allPrice3)}")
+        oneStockPrice = "{:.2f}".format(float(i.partPrice3))
+        print(f"Egy részvény ára: {toDollar(oneStockPrice)}")
+        print('\n---------------------------------')
+        hanyadik += 1
     input('')
 
 
@@ -312,6 +319,7 @@ def oneCal():
         writeFile3()
             
 def toDollar(num):
+    num = float(num)
     if num > 100000000000:
         return f"${num / 100000000000} T"
     elif num > 100000000:

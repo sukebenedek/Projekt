@@ -1,7 +1,7 @@
 import os
 from function import *
 
-today = "2022-11-23"
+today = "2022-11-30"
 today = today.split("-")
 day = int(today[2])
 month = int(today[1])
@@ -94,6 +94,6 @@ def timeJumping():
     # beszorzas()
     os.system("cls")
     print(f"Jelenlegi dátum: {date}\n")
-    input("Ok")
+    input("")
 
     
