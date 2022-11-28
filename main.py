@@ -1,5 +1,6 @@
 # from function import ownList, lists, deleteResults, modifyResults, newResults, readFile, readFile2, readFile3,readFileC, searchByName, buySell, oneCal 
 from function import *
+from menu import menu
 
 
 readFile()

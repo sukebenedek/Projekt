@@ -1,7 +1,7 @@
 from results import Result1, Result2, Result3, szorzo, Cash
 import random
 import os
-from menu import menu
+# from menu import menu
 # from date import lastJump
 
 results = []
@@ -339,6 +339,7 @@ month = int(today[1])
 year = int(today[0])
 date = today
 a = None
+data = None
 
 lastJump = ""
 
