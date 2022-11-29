@@ -1,6 +1,6 @@
-import os
-# from function import *
-from function import writeFileSZDelet
+# import os
+# # from function import *
+# from function import writeFileSZDelet
 
 
 # today = "2022-11-30"

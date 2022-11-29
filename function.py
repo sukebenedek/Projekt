@@ -135,6 +135,7 @@ def lists():
 # szorzok ---------------------------------------------------------------------------------------------------------------
 
 szorzook = []
+listOfSzorzok = []
 
 def readFileSZ():
     szorzook.clear()
@@ -142,6 +143,9 @@ def readFileSZ():
     for row in f:
         r = szorzo(row.strip())
         szorzook.append(r)
+
+        rowadikSzorzo = row.replace("\n", "")
+        listOfSzorzok.append(float(rowadikSzorzo))
     f.close()
 
 def writeFileSZ():
@@ -323,13 +327,18 @@ def oneCal():
 def toDollar(num):
     num = float(num)
     if num > 100000000000:
-        return f"${num / 100000000000} T"
+        formattedNum = '{:.3f}'.format(num / 100000000000)
+        return f"${formattedNum} T"
     elif num > 100000000:
-        return f"${num / 100000000} B"
+        formattedNum = '{:.3f}'.format(num / 100000000)
+        return f"${formattedNum} B"
     elif num > 100000:
-        return f"${num / 100000} M"
+        formattedNum = '{:.3f}'.format(num / 100000)
+        return f"${formattedNum} M"
     else:
-        return f"${num}"
+        formattedNum = '{:.2f}'.format(num)
+        return f"${formattedNum}"
+    
     
 # 4 -----------------------------------------------------------------------------------------------------------------------
 today = "2022-11-30"
@@ -340,6 +349,7 @@ year = int(today[0])
 date = today
 a = None
 data = None
+listOfAllPrices = [] #azoknak az áraknak a listája amik még árváltozás előtt voltak
 
 lastJump = ""
 
@@ -381,6 +391,11 @@ def timeJumping():
 
     jumpType = input("Választásod: ")
     print()
+
+    listOfAllPrices = []
+
+    for i in results3:
+        listOfAllPrices.append(i.allPrice3)
 
     if jumpType == "1":
         date = jumpDate("day")
@@ -437,32 +452,58 @@ def timeJumping():
 # 5 -----------------------------------------------------------------------------------------------------------------------
 
 def summaryAfterPriceChange():
+    
+    readFileSZ()
     if lastJump == "":
         print(jumpDate(""), "\n")
-        print("Eddig nem történt árváltozás\n")
+        print("Eddig nem történt árváltozás.\n")
     elif lastJump == "day":
-        hanyadik = 1
+        # print(szorzook)
+        # print(listOfSzorzok)
+        hanyadik = 0
         for i in results3:
             # print(f'{i.name3}:\t {toDollar(i.allPrice3)} | {i.partPrice3}$/db\n')
-            print(f"{hanyadik}.\tNév: {i.name3}")
-
-
-
-            print(f"Összes piaci érték 1 napja: ")
-            print(f"Egy részvény ára 1 napja: ")
-
-
-
+            print('----------------------------------------')
+            print(f"Név: {i.name3}".center(40, "-"), end="\n\n")
+            
+            print(f"Összes piaci érték 1 napja: {toDollar(int(i.allPrice3) / listOfSzorzok[hanyadik])}")
+            print(f"Egy részvény ára 1 napja: {toDollar(int(i.allPrice3) / listOfSzorzok[hanyadik] / 1000000000)}\n")
 
             print(f"Jelenlegi összes piaci érték: {toDollar(i.allPrice3)}")
             oneStockPrice = "{:.2f}".format(float(i.partPrice3))
-            print(f"Jelenleg egy részvény ára: {toDollar(oneStockPrice)}")
-            print('\n---------------------------------')
+            print(f"Jelenleg egy részvény ára: {toDollar(oneStockPrice)}\n")
+
+            if float('{:.1f}'.format((listOfSzorzok[hanyadik]- 1.0) * 100)) == 0:
+                print(f"Ennek a részvénynek az ára nem változott.\n")
+            elif float('{:.1f}'.format((listOfSzorzok[hanyadik]- 1.0) * 100)) > 0:
+                print(f"Ez a részvény {'{:.1f}'.format((listOfSzorzok[hanyadik]- 1.0) * 100)} százalékkal növekedett.\n")
+            else: 
+                print(f"Ez a részvény {'{:.1f}'.format((listOfSzorzok[hanyadik]- 1.0) * -100)} százalékkal csökkent.\n")
+
             hanyadik += 1
     elif lastJump == "month":
-        pass
+        # print("honap")
+        hanyadik = 0
+        for i in results3:
+            print('----------------------------------------')
+            print(f"Név: {i.name3}".center(40, "-"), end="\n\n")
+            
+            print(f"Összes piaci érték 1 hónapja: {toDollar(int(i.allPrice3) / listOfSzorzok[hanyadik])}")
+            print(f"Egy részvény ára 1 hónapja: {toDollar(int(i.allPrice3) / listOfSzorzok[hanyadik] / 1000000000)}\n")
+
+            print(f"Jelenlegi összes piaci érték: {toDollar(i.allPrice3)}")
+            oneStockPrice = "{:.2f}".format(float(i.partPrice3))
+            print(f"Jelenleg egy részvény ára: {toDollar(oneStockPrice)}\n")
+
+            if float('{:.1f}'.format((listOfSzorzok[hanyadik]- 1.0) * 100)) == 0:
+                print(f"Ennek a részvénynek az ára nem változott.\n")
+            elif float('{:.1f}'.format((listOfSzorzok[hanyadik]- 1.0) * 100)) > 0:
+                print(f"Ez a részvény {'{:.1f}'.format((listOfSzorzok[hanyadik]- 1.0) * 100)} százalékkal növekedett.\n")
+            else: 
+                print(f"Ez a részvény {'{:.1f}'.format((listOfSzorzok[hanyadik]- 1.0) * -100)} százalékkal csökkent.\n")
+
+            hanyadik += 1
     else:
         print("Hiba kód: 001")
-
 
     input("")
