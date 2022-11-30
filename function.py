@@ -399,6 +399,7 @@ def timeJumping():
     else:
         print("Ilyen választás nem létezik.\n")
         input()
+        return
 
     writeFileSZDelet()
 
@@ -453,7 +454,7 @@ def summaryAfterPriceChange():
     if lastJump == "":
         print(jumpDate(""), "\n")
         print("Eddig nem történt árváltozás.\n")
-        print(listOfNevek)
+        # print(listOfNevek)
     elif lastJump == "day":
         # print(szorzook)
         # print(listOfSzorzok)
