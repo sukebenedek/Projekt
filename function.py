@@ -451,10 +451,11 @@ def summaryAfterPriceChange():
     readFile2()
     readFileSZ()
 
+    print(jumpDate(""))
+    print("Árváltozás utáni összegzés\n")
     if lastJump == "":
-        print(jumpDate(""), "\n")
         print("Eddig nem történt árváltozás.\n")
-        # print(listOfNevek)
+        # print(listOfNevek)    
     elif lastJump == "day":
         # print(szorzook)
         # print(listOfSzorzok)
