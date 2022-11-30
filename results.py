@@ -13,7 +13,7 @@ class Result2:
     def __init__(self, row: str):
         data = row.split(';')
         self.name2 = data[0]
-        self.allPrice2 = int(data[1])
+        self.allPrice2 = int(float(data[1]))
         self.partPrice2 = data[2]
 
 class Result3:
