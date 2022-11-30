@@ -100,6 +100,7 @@ def writeFile2():
 
 def ownList():
     readFile2()
+    print(f"Saját részvényeid({len(results2)} db):\n")
     for i in results2:
         print(f'{i.name2}:\t {i.allPrice2}   {i.partPrice2}$/db\n')
     input('')
@@ -200,15 +201,19 @@ def Mymoney():
 # 1,2 -------------------------------------------------------------------------------------------------------------------
 
 def buySell():
-    print('1. Ha eladni szeretnél')
-    print('2. Ha vásárolni szeretnél')
+    print('1. Ha eladni szeretnél.')
+    print('2. Ha vásárolni szeretnél.')
+    print('\n0. Ha ki szeretnél lépni.\n')
     choice = input('Válaszd ki melyiket szeretnéd: ')
-    while len(choice) != 1 or choice < '1' or choice > '2':
-        choice = input('Válaszd ki melyiket szeretnéd: ')
     if choice == '1':
         sell()
     elif choice == '2':
         buy()
+    elif choice == '0':
+        return
+    else:
+        print("\nIlyen menüpont nincs")
+        input("")
         
         
 
@@ -263,11 +268,13 @@ def buy():
                         i.MyCash -= int(count)
                         writeFileC()
                         return
-    if name.lower() in i.name.lower():
-        print('Ilyen nincs de lehet ezekre gondoltál')
-        print(f'{num}.{i.name}:\t {i.allPrice} {i.partPrice}/db')
-        input('')
-        num += 1
+    print('Ilyen nincs de lehet ezekre gondoltál\n')
+    # input('dadassd')
+    for i in results3:
+        if name.lower() in i.name3.lower():
+            print(f'{num}.{i.name3}:\t {i.allPrice3} {i.partPrice3}/db')
+            input('')
+            num += 1
 
 
 def sell():
@@ -275,6 +282,7 @@ def sell():
     name = input('Név: ')
     for i in results2:
         if name.lower() == i.name2.lower():
+            print(f'Maximum {i.allPrice2} dollárnyi részesedést adhatsz el.')
             count = input('Mennyit szeretne eladni belőle?(dollár): ')
             while int(count) > i.allPrice2:
                 count = input('Ennyi részesedés nincs nálad adj meg kevesebb értéket: ')
@@ -293,11 +301,13 @@ def sell():
                                 return
                 else:
                     print('Ilyen nevű cégtől nincs részvényed')
-    if name.lower() in i.name2.lower():
-        print('Ilyen nincs de lehet ezekre gondoltál')
-        print(f'{num}.{i.name2}:\t {i.allPrice2} {i.partPrice2}/db')
-        input('')
-        num += 1
+    print('Ilyen nincs de lehet ezekre gondoltál\n')
+    # input('dadassd')
+    for i in results2:
+        if name.lower() in i.name2.lower():
+            print(f'{num}.{i.name2}:\t {i.allPrice2} {i.partPrice2}/db')
+            input('')
+            num += 1
 
 
 def oneCal():
@@ -367,8 +377,8 @@ def jumpDate(howMuch):
 
 def timeJumping():
     os.system("cls")
-    print(f"Jelenlegi dátum {jumpDate(str())}")
-    print(f"1. Egy nap ugrása az időben.\n2. Egy hónap ugrása az időben\n")
+    print(f"Jelenlegi dátum {jumpDate(str())}\n")
+    print(f"1. Egy nap ugrása az időben.\n2. Egy hónap ugrása az időben.\n\n0. Kilépés\n")
 
     jumpType = input("Választásod: ")
     print()
@@ -384,14 +394,16 @@ def timeJumping():
     elif jumpType == "2":
         date = jumpDate("month")
         print(f"Jelenlegi dátum: {date}\n")
-    # elif jumpType == "0":
-    #     menu()
+    elif jumpType == "0":
+        return
     else:
         print("Ilyen választás nem létezik.\n")
         input()
 
     writeFileSZDelet()
 
+    print("Betöltés", end="")
+    data = None
     for i in results3:              # data: random sorsolt százalékos szorzó
         name = i.name3              # data2: data float, használható formában / 100
         if jumpType == '1':
@@ -408,9 +420,10 @@ def timeJumping():
         f = open('szorzok.csv', 'a', encoding='UTF=8')
         f.write(row)
         f.close()
-        print(i.allPrice3)
-        print(alleprice3)
-        print(data)     
+        print(".", end="")
+        # print(i.allPrice3)
+        # print(alleprice3)
+        # print(data)     
         i.allPrice3 = int(alleprice3 * a / 100)
         writeFile3()
         for i in results:
