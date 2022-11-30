@@ -102,7 +102,7 @@ def ownList():
     readFile2()
     print(f"Saját részvényeid({len(results2)} db):\n")
     for i in results2:
-        print(f'{i.name2}:\t {i.allPrice2}   {i.partPrice2}$/db\n')
+        print(f'{i.name2}:\t {i.allPrice2}$\n')
     input('')
 #3 ----------------------------------------------------------------------------------------------------------------------
 
@@ -273,8 +273,8 @@ def buy():
     for i in results3:
         if name.lower() in i.name3.lower():
             print(f'{num}.{i.name3}:\t {i.allPrice3} {i.partPrice3}/db')
-            input('')
             num += 1
+    input('')
 
 
 def sell():
@@ -306,8 +306,8 @@ def sell():
     for i in results2:
         if name.lower() in i.name2.lower():
             print(f'{num}.{i.name2}:\t {i.allPrice2} {i.partPrice2}/db')
-            input('')
             num += 1
+    input('')
 
 
 def oneCal():
