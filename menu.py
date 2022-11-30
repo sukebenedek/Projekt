@@ -4,8 +4,8 @@ from function import *
 def menu():
     os.system('cls')
     az = 0
-    print(f"Dátum: {jumpDate(str())}\n") 
-    print(f'Egyenleged: {Mymoney()}$')
+    print(f"Dátum: {jumpDate(str())}") 
+    print(f'Egyenleged: {Mymoney()}$\n')
     print('1..Saját részvények megnézése')
     print('2..Részvények')
     print('3..Vásárlás vagy eladás')
