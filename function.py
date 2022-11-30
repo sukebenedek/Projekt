@@ -74,6 +74,7 @@ def modifyResults():
 # 2 -----------------------------------------------------------------------------------------------------------------------
 
 results2 = []
+listOfNevek = []
 
 def readFile2():
     results2.clear()
@@ -81,6 +82,11 @@ def readFile2():
     for row in f:
         r = Result2(row.strip())
         results2.append(r)
+
+        rowadikNev = row.replace("\n", "")
+        rowadikNevList = rowadikNev.split(";")
+        if rowadikNevList[0] not in listOfNevek:
+            listOfNevek.append(rowadikNevList[0].lower())
     f.close()
 
 
@@ -120,13 +126,15 @@ def writeFile3():
 
 
 def lists():
-    hanyadik = 1
+    hanyadik = 0
     for i in results3:
         # print(f'{i.name3}:\t {toDollar(i.allPrice3)} | {i.partPrice3}$/db\n')
-        print(f"{hanyadik}.\tNév: {i.name3}")
+        print(f"{hanyadik + 1}.\tNév: {i.name3}")
         print(f"Összes piaci érték: {toDollar(i.allPrice3)}")
         oneStockPrice = "{:.2f}".format(float(i.partPrice3))
         print(f"Egy részvény ára: {toDollar(oneStockPrice)}")
+        if i.name3.lower() in listOfNevek:
+            print(f"\nBirtokolsz ilyen részvényt.")
         print('\n---------------------------------')
         hanyadik += 1
     input('')
@@ -413,7 +421,7 @@ def timeJumping():
                 for i in results2:
                     if name.lower() == i.name2.lower():
                         alleprice2 = i.allPrice2
-                        i. allPrice2 = alleprice2 * a / 100
+                        i.allPrice2 = alleprice2 * a / 100
                         writeFile2()
         oneCal()
 
@@ -426,10 +434,13 @@ def timeJumping():
 
 def summaryAfterPriceChange():
     
+    readFile2()
     readFileSZ()
+
     if lastJump == "":
         print(jumpDate(""), "\n")
         print("Eddig nem történt árváltozás.\n")
+        print(listOfNevek)
     elif lastJump == "day":
         # print(szorzook)
         # print(listOfSzorzok)
