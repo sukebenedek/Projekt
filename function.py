@@ -164,34 +164,6 @@ def writeFileSZDelet():
     f.close()
 
 
-# def beszorzas():
-#     writeFileSZDelet()
-#     for i in results3:
-#         name = i.name3
-#         alleprice3 = i.allPrice3
-#         data = random.randint(95, 105)
-#         a = data
-#         data2 = int(data) / 100
-#         row = f'{data2}\n'
-#         f = open('szorzok.csv', 'a', encoding='UTF=8')
-#         f.write(row)
-#         f.close()
-#         print(i.allPrice3)
-#         print(alleprice3)
-#         print(data)     
-#         i.allPrice3 = int(alleprice3 * a / 100)
-#         writeFile3()
-#         for i in results:
-#             if name.lower() == i.name.lower():
-#                 alleprice = i.allPrice
-#                 i.allPrice = int(alleprice * a / 100)  
-#                 writeFile()
-#                 for i in results2:
-#                     if name.lower() == i.name2.lower():
-#                         alleprice2 = i.allPrice2
-#                         i. allPrice2 = alleprice2 * a / 100
-#                         writeFile2() 
-
 
 # cash ------------------------------------------------------------------------------------------------------------------
 
@@ -245,7 +217,7 @@ def buy():
             print(f'Maximum {i.allPrice} dollárnyi részesedést vehetsz')
             count = input('Mennyit szeretne venni belőle?(dollár): ')
             for e in money:
-                while e.MyCash < count:
+                while e.MyCash < int(count):
                     count = input('Ennyi pénzed nincsen vegyél kevesebbet: ')
             while int(count) > i.allPrice:
                 print('Ha nem akarsz mégse venni(0)')
@@ -265,23 +237,24 @@ def buy():
                                 i.MyCash -= int(count)
                                 writeFileC()
                                 return
-            for i in results2:
-                if name.lower() != i.name2.lower():
-                    name = chname
-                    allPrice = int(count)
-                    partPrice = 0
-                    row = f'{name};{allPrice};{partPrice}\n'
-                    f = open('companies2.csv', 'a', encoding='UTF=8')
-                    f.write(row)
-                    f.close()
-                    for i in results:
-                        if name.lower() == i.name.lower():
-                            i.allPrice -= int(count)
-                            writeFile()
-                            for i in money:
-                                i.MyCash -= int(count)
-                                writeFileC()
-                                return
+            number = 0
+            while len(results2) < number and name.lower() != number.name2.lower():
+                number += 1
+            name = chname
+            allPrice = int(count)
+            partPrice = 0
+            row = f'{name};{allPrice};{partPrice}\n'
+            f = open('companies2.csv', 'a', encoding='UTF=8')
+            f.write(row)
+            f.close()
+            for i in results:
+                if name.lower() == i.name.lower():
+                    i.allPrice -= int(count)
+                    writeFile()
+                    for i in money:
+                        i.MyCash -= int(count)
+                        writeFileC()
+                        return
     if name.lower() in i.name.lower():
         print('Ilyen nincs de lehet ezekre gondoltál')
         print(f'{num}.{i.name}:\t {i.allPrice} {i.partPrice}/db')
